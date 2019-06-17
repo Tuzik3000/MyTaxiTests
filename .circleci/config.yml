@@ -13,5 +13,7 @@ workflows:
     # Run the welcome/run job in its own container
     jobs:
       - welcome/run:
-            command: |
-              mvn clean test
+          steps:
+            - run
+            name: Running tests
+            command: mvn clean test

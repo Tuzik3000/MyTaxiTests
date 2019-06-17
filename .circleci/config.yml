@@ -1,34 +1,42 @@
+# Java Maven CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-java/ for more details
+#
 version: 2
 jobs:
   build:
     docker:
-      - image: circleci/openjdk:11.0.1-jdk
+      # specify the version you desire here
+      - image: circleci/openjdk:8-jdk
 
-    working_directory: ~/sample-springboot-api
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/postgres:9.4
+
+#    working_directory: ~/recipe
+
+    environment:
+      # Customize the JVM maximum heap limit
+      MAVEN_OPTS: -Xmx3200m
 
     steps:
-      # git pull
       - checkout
+      - run: cd recipe/; ls -la; pwd;
 
       # Download and cache dependencies
       - restore_cache:
           keys:
-            - sample-springboot-api-{{ checksum "pom.xml" }}
+            - recipe-{{ checksum "pom.xml" }}
+            # fallback to using the latest cache if no exact match is found
+            - recipe-
 
-      - run: mvn dependency:go-offline
+      - run: cd recipe; mvn dependency:go-offline
 
       - save_cache:
           paths:
-            - ~/.m2
-          key: sample-springboot-api-{{ checksum "pom.xml" }}
+            - ~/recipe/.m2
+          key: recipe-{{ checksum "pom.xml" }}
 
-      # package into a jar
-      - run: mvn clean package
-
-      # build and push docker image to docker hub
-      - run: mvn clean compile jib:build -Dimage=zarinlo/springboot-api:$CIRCLE_BUILD_NUM
-
-      # store raw contents of src code
-      - store_artifacts:
-          path: target/classes
-destination: sample-springboot-api
+      # run tests!
+      - run: mvn clean test

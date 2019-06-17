@@ -18,9 +18,9 @@ import java.util.stream.StreamSupport;
 import static com.jayway.restassured.RestAssured.given;
 
 /**
- * Step definition for Test task
+ * Step definition for main Test task
  */
-public class TaxiTestsStepDefinition {
+public class TaxiMainTaskStepDefinition {
 
     @Autowired
     UsersMap userMap;
@@ -83,6 +83,6 @@ public class TaxiTestsStepDefinition {
                 forEach(o -> commentsSortedArray.put(o));
         Assert.assertTrue("Not all comments which were made by Username "
                 + user + " and it's email " + email + " comments which were found" + "\n\n\n\n"
-                + commentsSortedArray.toString(),  commentsSortedArray == commentsArray);
+                + commentsSortedArray.toString(),  commentsSortedArray.length() == commentsArray.length());
     }
 }

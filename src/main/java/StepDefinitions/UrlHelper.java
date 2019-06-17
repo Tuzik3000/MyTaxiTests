@@ -37,6 +37,10 @@ public class UrlHelper {
         return searchFor(COMMENTS);
     }
 
+    public static String findAllPhotos() {
+        return searchFor(PHOTOS);
+    }
+
     public static String searchPostsByUserId(String userId) {
         return searchForBy(POSTS, USERID, userId);
     }

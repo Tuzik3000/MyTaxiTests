@@ -14,6 +14,6 @@ workflows:
     jobs:
       - welcome/run:
           steps:
-            - run
+            - run:
             name: Running tests
             command: mvn clean test

@@ -114,4 +114,15 @@
         </plugins>
     </build>
 
+    <distributionManagement>
+        <repository>
+            <id>packagecloud-examplecorp</id>
+            <url>packagecloud+https://packagecloud.io/exampleCorp/core</url>
+        </repository>
+        <snapshotRepository>
+            <id>packagecloud-examplecorp</id>
+            <url>packagecloud+https://packagecloud.io/exampleCorp/core</url>
+        </snapshotRepository>
+    </distributionManagement>
+
 </project>

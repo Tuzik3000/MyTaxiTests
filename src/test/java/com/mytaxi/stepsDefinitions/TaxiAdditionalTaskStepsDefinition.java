@@ -1,6 +1,6 @@
 package com.mytaxi.stepsDefinitions;
 
-import StepDefinitions.UrlHelper;
+import urlHelper.UrlHelper;
 import com.jayway.restassured.response.Response;
 import com.mytaxi.storageData.UsersMap;
 import cucumber.api.java.en.And;

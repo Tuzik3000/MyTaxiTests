@@ -1,6 +1,6 @@
 package dataStructures;
 
-import StepDefinitions.UrlHelper;
+import urlHelper.UrlHelper;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

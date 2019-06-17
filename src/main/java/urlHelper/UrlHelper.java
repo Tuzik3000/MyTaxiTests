@@ -1,4 +1,4 @@
-package StepDefinitions;
+package urlHelper;
 
 /**
  * Base class for working for Providing any Url and Fields Strings
